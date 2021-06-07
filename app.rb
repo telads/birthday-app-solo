@@ -9,10 +9,12 @@ class Birthday < Sinatra::Base
   end
 
   post '/user-details' do 
-    erb :user_details
     @name = params[:name]
     @birthday = params[:birthday]
+    erb :user_details
   end
 
 
+
 end
+
