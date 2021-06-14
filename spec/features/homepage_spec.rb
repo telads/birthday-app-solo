@@ -7,9 +7,9 @@ feature 'index page' do
   scenario 'the user is able to enter their name and birthdate' do
     visit '/'
     fill_in :name, with: 'Angelina'
-    fill_in :date, with: '1st'
-    fill_in :month, with: "January"
+    select '1', from: 'date'
+    select 'January', from: 'month'
     click_button 'Submit!'
-    expect(page).to have_content 'Hi Angelina! Your birthday is on the 1st January'
+    expect(page).to have_content 'Hi Angelina! Your birthday is on 1/1'
   end
 end
