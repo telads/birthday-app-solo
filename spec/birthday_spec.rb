@@ -7,3 +7,5 @@ describe 'A Birthday App' do
     expect(birthday_month).to eq "May"
   end
 end
+
+ 
