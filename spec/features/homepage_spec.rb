@@ -16,7 +16,7 @@ feature 'index page' do
   scenario "contains a birthday greeting if the user date matches today's date" do
     visit '/'
     fill_in :name, with: 'Angelina'
-    fill_in :date, with: '19'
+    fill_in :date, with: '26'
     select 'July', from: 'month'
     click_button 'Submit!'
     expect(page).to have_content 'Happy birthday Angelina!'
