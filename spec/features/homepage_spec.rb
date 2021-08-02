@@ -1,3 +1,6 @@
+require 'date'
+require 'timecop'
+
 feature 'index page' do
   scenario 'user sees greeting' do
     visit '/'
@@ -14,20 +17,24 @@ feature 'index page' do
   end
 
   scenario "contains a birthday greeting if the user date matches today's date" do
+    new_time = Time.local(2021, 8, 1)
+    Timecop.freeze(new_time)
     visit '/'
     fill_in :name, with: 'Angelina'
-    fill_in :date, with: '26'
-    select 'July', from: 'month'
+    fill_in :date, with: '1'
+    select 'August', from: 'month'
     click_button 'Submit!'
     expect(page).to have_content 'Happy birthday Angelina!'
   end
 
-  scenario 'contains a message letting the user know how many days left until their birthday' do
+  scenario 'calculates the number of days left until their next birthday' do
+    new_time = Time.local(2021, 8, 1)
+    Timecop.freeze(new_time)
     visit '/'
     fill_in :name, with: 'Angelina'
     fill_in :date, with: '19'
-    select 'January', from: 'month'
+    select 'August', from: 'month'
     click_button 'Submit!'
-    expect(page).to have_content 'you have X days'
+    expect(page).to have_content 'you have 18 days until your birthday!'
   end
 end
